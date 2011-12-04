@@ -3,7 +3,9 @@
 
 #include "cocos2d.h"
 
-class HelloWorld : public cocos2d::CCLayer
+using namespace cocos2d;
+
+class HelloWorld : public CCLayer
 {
 public:
 	// Here's a difference. Method 'init' in cocos2d-x returns bool, instead of returning 'id' in cocos2d-iphone
@@ -17,6 +19,20 @@ public:
 
 	// implement the "static node()" method manually
 	LAYER_NODE_FUNC(HelloWorld);
+    
+    void step(ccTime dt);
+ 	virtual bool ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent);
+    
+ 	// optional
+ 	virtual void ccTouchMoved(CCTouch *pTouch, CCEvent *pEvent) ;
+ 	virtual void ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent) ;
+ 	virtual void ccTouchCancelled(CCTouch *pTouch, CCEvent *pEvent);
+
+
+    virtual void registerWithTouchDispatcher(void);
+protected:
+    CCMenuItemImage *pCloseItem ;
+    CCSprite* pSprite;
 };
 
 #endif // __HELLOWORLD_SCENE_H__
